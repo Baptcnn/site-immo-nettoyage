@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Immo Pro Nettoyage — Entretien Professionnel</title>
+  <meta name="description" content="Immo Pro Nettoyage — Solutions de nettoyage professionnel pour copropriétés, bureaux et espaces de travail. Barr, Alsace.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0B1017;
+      --bg2:       #111820;
+      --bg3:       #16202D;
+      --card:      #141C27;
+      --accent:    #1A7DE8;
+      --accent-glow: rgba(26,125,232,0.25);
+      --gold:      #C4A876;
+      --text:      #E4DDCF;
+      --text2:     #768DA6;
+      --text3:     #3E5068;
+      --border:    rgba(255,255,255,0.06);
+      --border2:   rgba(26,125,232,0.35);
+      --nav-bg:    rgba(11,16,23,0.80);
+      --nav-bg-scrolled: rgba(11,16,23,0.95);
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body:    'Plus Jakarta Sans', sans-serif;
+      --font-mono:    'DM Mono', monospace;
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* ─── LIGHT THEME ─────────────────────────────── */
+    [data-theme="light"] {
+      --bg:        #F4F1EC;
+      --bg2:       #EAE6DF;
+      --bg3:       #E0DBD2;
+      --card:      #FAFAF7;
+      --accent:    #1566CC;
+      --accent-glow: rgba(21,102,204,0.2);
+      --gold:      #9A7030;
+      --text:      #18273A;
+      --text2:     #486080;
+      --text3:     #8AA0B8;
+      --border:    rgba(0,0,0,0.08);
+      --border2:   rgba(21,102,204,0.28);
+      --nav-bg:    rgba(244,241,236,0.85);
+      --nav-bg-scrolled: rgba(244,241,236,0.97);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background 0.4s var(--ease), color 0.3s var(--ease);
+    }
+
+    /* ─── GRAIN OVERLAY ───────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.028;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── SCROLLBAR ───────────────────────────────── */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    /* ─── SELECTION ───────────────────────────────── */
+    ::selection { background: var(--accent); color: #fff; }
+
+    /* ─── NAV ─────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 5vw;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.4s var(--ease);
+    }
+    nav.scrolled {
+      height: 60px;
+      background: var(--nav-bg-scrolled);
+    }
+
+    /* ─── THEME TOGGLE ────────────────────────────── */
+    .theme-toggle {
+      width: 38px; height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card);
+      color: var(--text2);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.2s;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: rotate(15deg);
+    }
+    .theme-toggle svg { width: 18px; height: 18px; }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo span {
+      color: var(--accent);
+      font-style: italic;
+      font-weight: 500;
+    }
+    .nav-logo-mark {
+      width: 30px; height: 30px;
+      background: var(--accent);
+      clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: #fff;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text2);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--accent);
+      transition: width 0.3s var(--ease);
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--accent) !important;
+      color: #fff !important;
+      padding: 8px 20px;
+      border-radius: 3px;
+      font-family: var(--font-mono) !important;
+      font-size: 0.7rem !important;
+      letter-spacing: 0.1em !important;
+      transition: box-shadow 0.3s, transform 0.2s !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover {
+      box-shadow: 0 0 24px var(--accent-glow) !important;
+      transform: translateY(-1px);
+    }
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-burger span {
+      display: block;
+      width: 24px; height: 1.5px;
+      background: var(--text);
+      transition: all 0.3s var(--ease);
+    }
+
+    /* ─── HERO ────────────────────────────────────── */
+    #accueil {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      padding: 100px 10vw 80px 5vw;
+    }
+
+    /* Diagonal stripe pattern */
+    #accueil::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -55deg,
+        transparent,
+        transparent 60px,
+        rgba(26,125,232,0.018) 60px,
+        rgba(26,125,232,0.018) 61px
+      );
+      pointer-events: none;
+    }
+
+    /* Glow orb */
+    .hero-orb {
+      position: absolute;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(26,125,232,0.12) 0%, transparent 70%);
+      top: -200px; right: -150px;
+      pointer-events: none;
+      animation: orbFloat 8s ease-in-out infinite;
+    }
+    .hero-orb-2 {
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(196,168,118,0.06) 0%, transparent 70%);
+      bottom: 0; left: 10%;
+      pointer-events: none;
+      animation: orbFloat 12s ease-in-out infinite reverse;
+    }
+    @keyframes orbFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+
+    .hero-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease) 0.2s forwards;
+    }
+    .hero-label::before {
+      content: '';
+      display: block;
+      width: 40px; height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7vw, 8rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      max-width: 100%;
+      overflow-wrap: break-word;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease) 0.4s forwards;
+    }
+    .hero-heading em {
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 600;
+      padding-right: 0.18em;
+    }
+    .hero-heading .line-accent {
+      display: block;
+      position: relative;
+    }
+    .hero-heading .line-accent::after {
+      content: '.';
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      margin-top: 2.5rem;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text2);
+      max-width: 480px;
+      line-height: 1.75;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease) 0.65s forwards;
+    }
+
+    .hero-actions {
+      margin-top: 3rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease) 0.85s forwards;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 8px 40px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+    .btn-primary svg { width: 14px; height: 14px; }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text2);
+      padding: 14px 28px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      background: rgba(26,125,232,0.07);
+    }
+
+    .hero-stats {
+      position: absolute;
+      bottom: 60px; right: 5vw;
+      display: flex;
+      gap: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease) 1.1s forwards;
+    }
+    .stat-item { text-align: right; }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--accent); }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--text3);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px; left: 5vw;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease) 1.3s forwards;
+    }
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(0.8); }
+    }
+    .scroll-text {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      color: var(--text3);
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SCROLL PROGRESS BAR ─────────────────────── */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(to right, var(--accent), var(--gold));
+      z-index: 200;
+      transition: width 0.05s linear;
+      box-shadow: 0 0 8px var(--accent-glow);
+    }
+
+    /* ─── SHIMMER ON HERO ACCENT ──────────────────── */
+    .hero-heading em {
+      position: relative;
+      display: inline;
+      padding-right: 0.18em;
+      background: linear-gradient(
+        100deg,
+        var(--accent) 0%,
+        var(--accent) 40%,
+        #7ec8ff 50%,
+        var(--accent) 60%,
+        var(--accent) 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 4s linear 2s infinite;
+    }
+    [data-theme="light"] .hero-heading em {
+      background: linear-gradient(
+        100deg,
+        var(--accent) 0%,
+        var(--accent) 40%,
+        #5aabf5 50%,
+        var(--accent) 60%,
+        var(--accent) 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 4s linear 2s infinite;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
+
+    /* ─── SERVICE CARDS STAGGER ───────────────────── */
+    .services-grid .service-card {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: none;
+    }
+    .services-grid.visible .service-card {
+      animation: cardReveal 0.7s var(--ease) both;
+    }
+    .services-grid.visible .service-card:nth-child(1) { animation-delay: 0.05s; }
+    .services-grid.visible .service-card:nth-child(2) { animation-delay: 0.2s; }
+    .services-grid.visible .service-card:nth-child(3) { animation-delay: 0.35s; }
+    @keyframes cardReveal {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Icon scale on card hover */
+    .service-card .service-icon {
+      transition: transform 0.4s var(--ease);
+    }
+    .service-card:hover .service-icon {
+      transform: scale(1.12) rotate(-4deg);
+    }
+
+    /* ─── PROCESS STEPS STAGGER ───────────────────── */
+    .process-steps.visible .process-step {
+      animation: stepReveal 0.6s var(--ease) both;
+    }
+    .process-steps.visible .process-step:nth-child(1) { animation-delay: 0.05s; }
+    .process-steps.visible .process-step:nth-child(2) { animation-delay: 0.18s; }
+    .process-steps.visible .process-step:nth-child(3) { animation-delay: 0.31s; }
+    .process-steps.visible .process-step:nth-child(4) { animation-delay: 0.44s; }
+    @keyframes stepReveal {
+      from { opacity: 0; transform: translateX(-20px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .process-steps .process-step {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    /* ─── SECTION TAG LINE GROW ───────────────────── */
+    .reveal .section-tag::before,
+    .process-left .section-tag::before {
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s var(--ease) 0.3s;
+    }
+    .reveal.visible .section-tag::before,
+    .process-left.visible .section-tag::before {
+      transform: scaleX(1);
+    }
+
+    /* ─── BUTTON RIPPLE ───────────────────────────── */
+    .btn-primary, .btn-ghost, .btn-submit {
+      overflow: hidden;
+      position: relative;
+    }
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      transform: scale(0);
+      animation: rippleAnim 0.55s linear;
+      pointer-events: none;
+    }
+    @keyframes rippleAnim {
+      to { transform: scale(4); opacity: 0; }
+    }
+
+    /* ─── FLOATING FORM LABELS ────────────────────── */
+    .form-field-float {
+      position: relative;
+      margin-top: 0.5rem;
+    }
+    .form-field-float .form-input,
+    .form-field-float .form-textarea {
+      padding: 20px 0 8px;
+    }
+    .form-field-float .float-label {
+      position: absolute;
+      top: 20px; left: 0;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: var(--text3);
+      text-transform: uppercase;
+      pointer-events: none;
+      transition: top 0.25s var(--ease), font-size 0.25s var(--ease), color 0.25s;
+    }
+    .form-field-float.has-value .float-label,
+    .form-field-float:focus-within .float-label {
+      top: 2px;
+      font-size: 0.58rem;
+      color: var(--accent);
+    }
+
+    /* ─── STAT COUNTER HIGHLIGHT ──────────────────── */
+    .stat-num {
+      transition: color 0.3s;
+    }
+    .stat-item:hover .stat-num {
+      color: var(--accent);
+    }
+
+    /* ─── NAV LOGO MARK ENTRANCE ──────────────────── */
+    .nav-logo-mark {
+      animation: logoEntrance 0.6s var(--ease) 0.1s both;
+    }
+    @keyframes logoEntrance {
+      from { transform: scale(0) rotate(-20deg); opacity: 0; }
+      to   { transform: scale(1) rotate(0deg);   opacity: 1; }
+    }
+
+    /* ─── MAP SECTION ─────────────────────────────── */
+    .map-frame-wrap.reveal {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    }
+    .map-frame-wrap.reveal.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ─── SECTION ANATOMY ─────────────────────────── */
+    section { position: relative; }
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 5vw;
+    }
+    .section-header {
+      margin-bottom: 5rem;
+    }
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .section-tag::before {
+      content: '';
+      display: block;
+      width: 30px; height: 1px;
+      background: var(--accent);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .section-desc {
+      margin-top: 1.25rem;
+      color: var(--text2);
+      font-size: 0.95rem;
+      max-width: 520px;
+      line-height: 1.8;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── DIVIDER ─────────────────────────────────── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 0;
+    }
+
+    /* ─── SERVICES ────────────────────────────────── */
+    #prestations {
+      padding: 120px 0;
+      background: var(--bg2);
+    }
+    #prestations::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .service-card {
+      background: var(--card);
+      padding: 3rem 2.5rem;
+      position: relative;
+      transition: background 0.4s var(--ease);
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s var(--ease);
+    }
+    .service-card:hover { background: var(--bg3); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-num {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--text3);
+      margin-bottom: 2rem;
+      display: block;
+    }
+    .service-icon {
+      width: 52px; height: 52px;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .service-icon svg {
+      width: 100%; height: 100%;
+    }
+    .service-name {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    .service-subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.75rem;
+    }
+    .service-list {
+      list-style: none;
+    }
+    .service-list li {
+      font-size: 0.88rem;
+      color: var(--text2);
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+      transition: color 0.3s;
+    }
+    .service-list li:last-child { border-bottom: none; }
+    .service-list li::before {
+      content: '—';
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .service-card:hover .service-list li { color: #9BB5CC; }
+
+    /* ─── PROCESS / WHY US ────────────────────────── */
+    #pourquoi {
+      padding: 120px 0;
+    }
+    .process-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .process-left .section-desc { max-width: 100%; }
+
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .process-step {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 1.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+    .process-step:first-child { padding-top: 0; }
+    .process-step:last-child { border-bottom: none; }
+    .process-step:hover { border-color: var(--border2); }
+    .step-num {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      padding-top: 4px;
+    }
+    .step-content {}
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .step-desc {
+      font-size: 0.87rem;
+      color: var(--text2);
+      line-height: 1.75;
+    }
+
+    .highlight-box {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 2rem 2rem 2rem 2.5rem;
+      border-radius: 0 6px 6px 0;
+      margin-top: 3rem;
+    }
+    .highlight-quote {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 500;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .highlight-source {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--text3);
+      text-transform: uppercase;
+    }
+
+    /* ─── CONTACT ─────────────────────────────────── */
+    #contact {
+      padding: 120px 0;
+      background: var(--bg2);
+    }
+    #contact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-info {
+      position: sticky;
+      top: 100px;
+    }
+    .contact-detail {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      transition: border-color 0.3s;
+    }
+    .contact-item:first-child { padding-top: 0; }
+    .contact-item:last-child { border-bottom: none; }
+    .contact-item:hover { border-color: var(--border2); }
+    .contact-icon-wrap {
+      width: 40px; height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      background: var(--card);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .contact-item:hover .contact-icon-wrap {
+      border-color: var(--accent);
+      background: rgba(26,125,232,0.08);
+    }
+    .contact-icon-wrap svg {
+      width: 16px; height: 16px;
+      color: var(--accent);
+      stroke: var(--accent);
+    }
+    .contact-item-label {
+      font-family: var(--font-mono);
+      font-size: 0.63rem;
+      letter-spacing: 0.12em;
+      color: var(--text3);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .contact-item-value {
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* Contact Form */
+    .contact-form-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 3rem;
+    }
+    .form-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2.5rem;
+    }
+    .form-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .form-field.full { grid-column: 1 / -1; }
+    .form-label {
+      font-family: var(--font-mono);
+      font-size: 0.63rem;
+      letter-spacing: 0.14em;
+      color: var(--text3);
+      text-transform: uppercase;
+    }
+    .form-input,
+    .form-textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 400;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.3s;
+      width: 100%;
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+      line-height: 1.6;
+    }
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--accent);
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--text3);
+    }
+    .form-file-wrap {
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .form-file-wrap:hover {
+      border-color: var(--accent);
+      background: rgba(26,125,232,0.04);
+    }
+    .form-file-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--text3);
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .form-file-label svg { color: var(--accent); stroke: var(--accent); }
+    #file-input { display: none; }
+    #file-name { margin-top: 6px; font-size: 0.78rem; color: var(--accent); }
+
+    .form-submit {
+      margin-top: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--text3);
+    }
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+    .btn-submit:hover {
+      box-shadow: 0 8px 40px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+    .btn-submit svg { width: 14px; height: 14px; }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--text);
+    }
+    .form-success span { color: var(--accent); }
+
+    /* ─── FOOTER ──────────────────────────────────── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 3rem 5vw;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text2);
+    }
+    .footer-logo em { font-style: italic; color: var(--accent); }
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--text3);
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--text3);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ─── MAP SECTION ────────────────────────────── */
+    #localisation {
+      padding: 120px 0;
+    }
+    .map-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .map-frame-wrap {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      aspect-ratio: 4/3;
+      transition: border-color 0.3s;
+    }
+    .map-frame-wrap:hover { border-color: var(--border2); }
+    .map-frame-wrap iframe {
+      width: 100%; height: 100%;
+      display: block;
+      border: none;
+      filter: grayscale(0.2) contrast(1.05);
+    }
+    [data-theme="light"] .map-frame-wrap iframe { filter: none; }
+    .map-pin-badge {
+      position: absolute;
+      bottom: 16px; left: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      backdrop-filter: blur(10px);
+    }
+    .map-pin-badge svg { width: 14px; height: 14px; stroke: var(--accent); }
+    .map-pin-badge span {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--text2);
+    }
+    @media (max-width: 900px) {
+      .map-layout { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    /* ─── MOBILE NAV ──────────────────────────────── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(11,16,23,0.98);
+      z-index: 101;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    [data-theme="light"] .mobile-menu { background: rgba(244,241,236,0.98); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-close {
+      position: absolute;
+      top: 24px; right: 5vw;
+      background: none;
+      border: none;
+      color: var(--text2);
+      font-size: 1.5rem;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────── */
+    /* ─── SERVICE CARD IMAGES ─────────────────────── */
+    .service-img {
+      height: 190px;
+      margin: -3rem -2.5rem 2rem;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.7s var(--ease);
+    }
+    .service-card:hover .service-img {
+      transform: scale(1.04);
+    }
+    .service-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(0,0,0,0.18) 0%,
+        var(--card) 100%
+      );
+      transition: background 0.4s;
+    }
+    [data-theme="light"] .service-img::after {
+      background: linear-gradient(to bottom,
+        rgba(0,0,0,0.12) 0%,
+        var(--card) 100%
+      );
+    }
+    .service-card:hover .service-img::after {
+      background: linear-gradient(to bottom,
+        rgba(0,0,0,0.1) 0%,
+        var(--bg3) 100%
+      );
+    }
+
+    /* ─── PHOTO BAND ──────────────────────────────── */
+    .photo-band {
+      position: relative;
+      height: 520px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .photo-band-img {
+      position: absolute;
+      inset: -5%;
+      background: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1800&q=80&auto=format&fit=crop') center/cover no-repeat;
+      animation: kenBurns 18s ease-in-out infinite alternate;
+    }
+    @keyframes kenBurns {
+      from { transform: scale(1.0) translateX(0); }
+      to   { transform: scale(1.08) translateX(-2%); }
+    }
+    .photo-band-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(11,16,23,0.82) 0%,
+        rgba(26,125,232,0.18) 60%,
+        rgba(11,16,23,0.70) 100%
+      );
+    }
+    [data-theme="light"] .photo-band-overlay {
+      background: linear-gradient(
+        135deg,
+        rgba(20,30,50,0.78) 0%,
+        rgba(26,125,232,0.2) 60%,
+        rgba(10,18,30,0.68) 100%
+      );
+    }
+    .photo-band-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 5vw;
+      max-width: 800px;
+    }
+    .photo-band-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .photo-band-tag::before, .photo-band-tag::after {
+      content: '';
+      display: block;
+      width: 30px; height: 1px;
+      background: rgba(255,255,255,0.4);
+    }
+    .photo-band-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+    .photo-band-title em {
+      font-style: italic;
+      color: #7ec8ff;
+    }
+    .photo-band-sub {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1px;
+      }
+      .process-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .contact-info { position: static; }
+      .hero-stats {
+        position: static;
+        margin-top: 3rem;
+        justify-content: flex-start;
+      }
+      .scroll-indicator { display: none; }
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      /* Nav mobile : logo plus compact */
+      .nav-logo { font-size: 1.05rem; gap: 7px; }
+      .nav-logo-mark { width: 26px; height: 26px; font-size: 0.52rem; }
+      /* Stats labels : pas de troncature */
+      .hero-stats { gap: 1.5rem; }
+      .stat-label { font-size: 0.55rem; letter-spacing: 0.08em; }
+    }
+    @media (max-width: 600px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .contact-form-wrap { padding: 2rem 1.5rem; }
+      .hero-heading { font-size: clamp(2.8rem, 10vw, 5rem); }
+      .form-submit { flex-direction: column; align-items: flex-start; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ─── SQUEEGEE CLEANING ANIMATION ─────────────── */
+    .squeegee-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .squeegee-veil {
+      position: absolute;
+      inset: 0;
+      will-change: transform;
+      transform: translateX(0%);
+    }
+    .squeegee-blade {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: -14px;
+      width: 14px;
+      background: linear-gradient(
+        to right,
+        rgba(160,220,255,0.0) 0%,
+        rgba(200,235,255,0.95) 40%,
+        rgba(255,255,255,1) 60%,
+        rgba(200,235,255,0.85) 80%,
+        rgba(140,200,255,0.0) 100%
+      );
+      box-shadow:
+        0 0 18px 4px rgba(100,185,255,0.7),
+        0 0 50px 10px rgba(100,185,255,0.25);
+    }
+    .squeegee-blade::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0; left: 50%;
+      width: 2px;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 0 8px 3px rgba(180,230,255,0.9);
+    }
+    .squeegee-drop {
+      position: absolute;
+      border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+      background: linear-gradient(160deg, rgba(220,240,255,0.85) 0%, rgba(140,200,255,0.4) 100%);
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.6);
+      animation: sqDrop linear forwards;
+    }
+    @keyframes sqDrop {
+      0%   { transform: translateY(0) scaleX(1);   opacity: 0.85; }
+      30%  { opacity: 0.75; }
+      70%  { transform: translateY(55px) scaleX(0.7); opacity: 0.45; }
+      100% { transform: translateY(90px) scaleX(0.4); opacity: 0; }
+    }
+    .squeegee-trail {
+      position: absolute;
+      top: 0; bottom: 0;
+      right: 14px;
+      width: 60px;
+      background: linear-gradient(to left,
+        rgba(160,215,255,0.0) 0%,
+        rgba(160,215,255,0.07) 100%
+      );
+      pointer-events: none;
+    }
+    .theme-toggle.cleaning {
+      animation: togglePop 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    }
+    @keyframes togglePop {
+      0%   { transform: scale(1) rotate(0deg); }
+      35%  { transform: scale(1.35) rotate(-20deg); }
+      65%  { transform: scale(0.92) rotate(5deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<!-- ═══ NAV ═══════════════════════════════════════════ -->
+<nav id="navbar">
+  <a href="#accueil" class="nav-logo">
+    <div class="nav-logo-mark">IPN</div>
+    Immo Pro <span>Nettoyage</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#prestations">Prestations</a></li>
+    <li><a href="#pourquoi">À propos</a></li>
+    <li><a href="#localisation">Localisation</a></li>
+    <li><a href="#contact" class="nav-cta">Nous contacter</a></li>
+  </ul>
+  <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+    <svg viewBox="0 0 122.88 116.76" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+      <path d="M3.55,35.29a16.83,16.83,0,0,1,2.17-11A16.25,16.25,0,0,1,11,19a19,19,0,0,1,7-2.62A21,21,0,0,1,30.11,18,17.48,17.48,0,0,1,36,11.39,19.61,19.61,0,0,1,47,8.32,18.2,18.2,0,0,1,64.6,22.67a17.16,17.16,0,0,1,7.92-2.15,11.08,11.08,0,0,1,5.36,1.32,11.45,11.45,0,0,1,4,3.67,19.27,19.27,0,0,1,3,10.38,5.28,5.28,0,0,1,.89,2.68,7.69,7.69,0,0,1,0,1.27,2.74,2.74,0,0,1-.08.43L78.57,71.19c-1.39.76-3,1.48-4.54,2.17l7.37-34a1.92,1.92,0,0,0,0-.48,1.12,1.12,0,0,0-.09-.44,1.45,1.45,0,0,1-.22-.21,2.42,2.42,0,0,0-.72-.16,6.16,6.16,0,0,0-.86,0H7a.3.3,0,0,0-.18.08,4.5,4.5,0,0,0-.12,2l11.1,47.68c2.12,1,1,.66,3.38.82a28.27,28.27,0,0,0,14.42-3.2A39.83,39.83,0,0,0,56.91,54.62,6.1,6.1,0,0,1,59.57,43h0a6.11,6.11,0,0,1,1.64,12A44.3,44.3,0,0,1,42.9,86a19.61,19.61,0,0,0-8.23,4.52A31.18,31.18,0,0,1,20.89,92.9c-1.8-.12-.19.41-1.89-.08,2.64,9.9,4.85,9.86,13,9.71l1.48,0c.25.57.53,1.14.84,1.72a13.57,13.57,0,0,0,1.82,2.58l-4.08,0c-11.54.22-14.08.27-17.81-15.35h0L14,90.7a22.93,22.93,0,0,1-4.75-3.64C1.12,78.91-3,62.92,2.5,36.88a2.18,2.18,0,0,1,.83-1.3,3.15,3.15,0,0,1,.22-.29ZM89.63,59.82a4.86,4.86,0,0,1,3.26-1.4l12.24,1.76c2.66.38,5.26,1.19,5.44,4.47a28.9,28.9,0,0,1-.37,4l-.1.86c-.35,3.23-1.25,2.86-3.9,4.15,6.61,10.83,14.23,22.28,16.59,35.14.51,2.64-1.18,4.37-4.53,5.44l-6,1.11c.59-7-1.25-14.32-5.17-22,1.07,8.71,2.15,17.2.72,22.22l-6.17,1.15c-.89-2.81-1.62-5-2.88-5.88l-1.43,5.39L87,115.76A40.25,40.25,0,0,0,93.59,97.2c-3.25,7.23-6.87,12.59-10.93,15.8-1.9,2-3.56,2.35-5,1.1-1-.9-.86-1.45-.64-2.75a16.62,16.62,0,0,1,1.87-5.14c-2.1,2.35-3.42,2.92-4.6,4.18-3.33,3.57-9.1,3-10-1.94-.6-3.17,1.52-4.19,3.66-6.44l3.73-3.89a72.35,72.35,0,0,1-12.58,6.69c-4.85,1.82-4.86,1.62-9.31-.68-6-3.09-10.45-6.63-2.12-8.76C63,90.33,78,84.39,89.75,71a4.17,4.17,0,0,1-2.12-2.87c-.33-1.72.79-7.06,2-8.33Zm16.62-55.1L97.16,50.78c-.84,7.71,8.12,8.41,9.55.83L115.6,5.48c-.21-6.43-7.49-7.84-9.35-.76ZM12.52,84.18,4.7,50.61C3.06,67.44,6.48,78.16,12.33,84l.19.18Z"/>
+    </svg>
+  </button>
+  <div class="nav-burger" id="burger" role="button" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="menuClose">✕ Fermer</button>
+  <a href="#accueil" onclick="closeMobile()">Accueil</a>
+  <a href="#prestations" onclick="closeMobile()">Prestations</a>
+  <a href="#pourquoi" onclick="closeMobile()">À propos</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- ═══ HERO ═══════════════════════════════════════════ -->
+<section id="accueil">
+  <div class="hero-orb"></div>
+  <div class="hero-orb-2"></div>
+
+  <div class="hero-label">Entretien professionnel · Alsace · Barr 67140</div>
+
+  <h1 class="hero-heading">
+    La propreté,<br>
+    <em>un standard</em><br>
+    <span class="line-accent">pour chaque espace</span>
+  </h1>
+
+  <p class="hero-sub">
+    Des espaces de vie et de travail toujours propres et bien entretenus.
+    Immo Pro Nettoyage intervient en copropriétés, bureaux et commerces
+    avec rigueur et discrétion.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#prestations" class="btn-primary">
+      Voir nos prestations
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+    <a href="#contact" class="btn-ghost">
+      Demander un devis
+    </a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">3<span>+</span></div>
+      <div class="stat-label">Types d'espaces</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">6<span>+</span></div>
+      <div class="stat-label">Prestations</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">67</div>
+      <div class="stat-label">Bas-Rhin</div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Défiler</span>
+  </div>
+</section>
+
+<!-- ═══ PRESTATIONS ════════════════════════════════════ -->
+<section id="prestations">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">02 / Nos Prestations</div>
+      <h2 class="section-title">Des solutions pour<br><em>chaque espace</em></h2>
+      <p class="section-desc">Nous intervenons sur tous vos espaces professionnels et résidentiels avec des protocoles adaptés à chaque environnement.</p>
+    </div>
+
+    <div class="services-grid reveal">
+      <!-- Copropriétés -->
+      <div class="service-card">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=700&h=400&q=80&auto=format&fit=crop')" role="img" aria-label="Immeuble résidentiel"></div>
+        <span class="service-num">01 / COPROPRIÉTÉS</span>
+        <div class="service-icon">
+          <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="18" width="36" height="26" rx="1" stroke="#1A7DE8" stroke-width="1.5"/>
+            <path d="M4 18L26 6L48 18" stroke="#1A7DE8" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="20" y="32" width="12" height="12" rx="1" stroke="#C4A876" stroke-width="1.2"/>
+            <rect x="14" y="24" width="7" height="6" rx="0.5" stroke="#1A7DE8" stroke-width="1" opacity="0.5"/>
+            <rect x="31" y="24" width="7" height="6" rx="0.5" stroke="#1A7DE8" stroke-width="1" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="service-name">Copropriétés</div>
+        <div class="service-subtitle">Parties communes & espaces partagés</div>
+        <ul class="service-list">
+          <li>Nettoyage des parties communes</li>
+          <li>Désinfection des installations</li>
+          <li>Remplacement d'ampoules</li>
+          <li>Balayage du parking par aspiration</li>
+        </ul>
+      </div>
+
+      <!-- Bureaux & Magasins -->
+      <div class="service-card">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1497215842964-222b430dc094?w=700&h=400&q=80&auto=format&fit=crop')" role="img" aria-label="Espace de bureaux moderne"></div>
+        <span class="service-num">02 / BUREAUX & COMMERCES</span>
+        <div class="service-icon">
+          <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="10" width="40" height="32" rx="2" stroke="#1A7DE8" stroke-width="1.5"/>
+            <path d="M6 18H46" stroke="#1A7DE8" stroke-width="1.2"/>
+            <rect x="12" y="24" width="8" height="5" rx="0.5" stroke="#C4A876" stroke-width="1.2"/>
+            <rect x="24" y="24" width="8" height="5" rx="0.5" stroke="#1A7DE8" stroke-width="1" opacity="0.5"/>
+            <rect x="36" y="24" width="6" height="5" rx="0.5" stroke="#1A7DE8" stroke-width="1" opacity="0.5"/>
+            <path d="M12 33h12" stroke="#1A7DE8" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+            <path d="M12 36h8" stroke="#1A7DE8" stroke-width="1" stroke-linecap="round" opacity="0.2"/>
+          </svg>
+        </div>
+        <div class="service-name">Bureaux & Magasins</div>
+        <div class="service-subtitle">Espaces professionnels & commerciaux</div>
+        <ul class="service-list">
+          <li>Entretien personnalisé des locaux</li>
+          <li>Nettoyage quotidien ou périodique</li>
+          <li>Protocoles adaptés à votre activité</li>
+          <li>Intervention en dehors des heures ouvrées</li>
+        </ul>
+      </div>
+
+      <!-- Divers -->
+      <div class="service-card">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1563453392212-326f5e854473?w=700&h=400&q=80&auto=format&fit=crop')" role="img" aria-label="Nettoyage professionnel"></div>
+        <span class="service-num">03 / DIVERS</span>
+        <div class="service-icon">
+          <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="26" cy="26" r="18" stroke="#1A7DE8" stroke-width="1.5"/>
+            <path d="M18 26c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8" stroke="#C4A876" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M26 14v4M26 34v4M14 26h4M34 26h4" stroke="#1A7DE8" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="service-name">Divers</div>
+        <div class="service-subtitle">Prestations complémentaires</div>
+        <ul class="service-list">
+          <li>Décapage de sols</li>
+          <li>Shampooing de moquettes</li>
+          <li>Enlèvement d'encombrants</li>
+          <li>Vitrerie & nettoyage de vitres</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ POURQUOI NOUS ══════════════════════════════════ -->
+<section id="pourquoi">
+  <div class="section-inner">
+    <div class="process-layout">
+      <div class="process-left reveal">
+        <div class="section-tag">03 / Notre approche</div>
+        <h2 class="section-title">Pourquoi nous<br><em>choisir ?</em></h2>
+        <p class="section-desc">
+          Une équipe d'experts dédiés à l'entretien de vos espaces, avec une approche rigoureuse et un service sur mesure.
+        </p>
+
+        <div class="highlight-box">
+          <p class="highlight-quote">« Faire de la propreté un standard, pour des espaces de vie et de travail toujours nets et bien entretenus. »</p>
+          <div class="highlight-source">— Immo Pro Nettoyage, Barr 67140</div>
+        </div>
+      </div>
+
+      <div class="process-steps reveal">
+        <div class="process-step">
+          <span class="step-num">01</span>
+          <div class="step-content">
+            <div class="step-title">Devis personnalisé</div>
+            <p class="step-desc">Chaque espace est unique. Nous évaluons vos besoins sur place pour vous proposer une offre parfaitement adaptée à votre situation.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <span class="step-num">02</span>
+          <div class="step-content">
+            <div class="step-title">Protocoles adaptés</div>
+            <p class="step-desc">Nos interventions suivent des protocoles stricts, adaptés à chaque type d'espace — des parties communes aux bureaux en passant par les commerces.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <span class="step-num">03</span>
+          <div class="step-content">
+            <div class="step-title">Réactivité & discrétion</div>
+            <p class="step-desc">Interventions planifiées ou urgentes, toujours avec le maximum de discrétion pour ne pas perturber votre activité ou vos résidents.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <span class="step-num">04</span>
+          <div class="step-content">
+            <div class="step-title">Suivi de qualité</div>
+            <p class="step-desc">Un contrôle régulier de la qualité de nos prestations garantit un niveau de propreté constant et conforme à vos attentes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PHOTO BAND ════════════════════════════════════ -->
+<div class="photo-band reveal">
+  <div class="photo-band-img" aria-hidden="true"></div>
+  <div class="photo-band-overlay"></div>
+  <div class="photo-band-content">
+    <div class="photo-band-tag">Notre engagement</div>
+    <h2 class="photo-band-title">Des espaces que l'on est<br><em>fier de montrer</em></h2>
+    <p class="photo-band-sub">Chaque intervention est menée avec rigueur et discrétion,<br>pour un résultat toujours à la hauteur de vos attentes.</p>
+    <a href="#contact" class="btn-primary" style="display:inline-flex;margin:0 auto;">
+      Demander un devis gratuit
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- ═══ LOCALISATION ══════════════════════════════════ -->
+<section id="localisation">
+  <div class="section-inner">
+    <div class="map-layout">
+      <div class="reveal">
+        <div class="section-tag">04 / Localisation</div>
+        <h2 class="section-title" style="font-size:clamp(1.8rem,3.5vw,3rem)">Nous trouver<br><em>à Barr</em></h2>
+        <p class="section-desc">
+          Basés à Barr en Alsace, nous intervenons dans tout le Bas-Rhin pour
+          l'entretien de vos copropriétés, bureaux et commerces.
+        </p>
+        <div style="margin-top:2.5rem; display:flex; flex-direction:column; gap:1rem;">
+          <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex-shrink:0;margin-top:3px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <div style="font-family:var(--font-mono);font-size:0.63rem;letter-spacing:0.12em;color:var(--text3);text-transform:uppercase;margin-bottom:4px">Adresse</div>
+              <div style="font-size:0.92rem;color:var(--text);line-height:1.6">25B route du Hohwald<br>67140 Barr, Alsace</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex-shrink:0;margin-top:3px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div>
+              <div style="font-family:var(--font-mono);font-size:0.63rem;letter-spacing:0.12em;color:var(--text3);text-transform:uppercase;margin-bottom:4px">Horaires</div>
+              <div style="font-size:0.92rem;color:var(--text);line-height:1.6">Lun – Ven : 8h – 18h<br>Sur rendez-vous le week-end</div>
+            </div>
+          </div>
+        </div>
+        <a href="https://maps.google.com/maps?q=25B+route+du+Hohwald+67140+Barr" target="_blank" rel="noopener" class="btn-ghost" style="margin-top:2.5rem;display:inline-flex;">
+          Ouvrir dans Google Maps
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:12px;height:12px"><path d="M7 3H3v10h10V9M9 1h6v6M15 1L7 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="map-frame-wrap reveal">
+        <iframe
+          src="https://maps.google.com/maps?q=25B+route+du+Hohwald+67140+Barr+France&output=embed&z=15"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Immo Pro Nettoyage — 25B route du Hohwald, Barr 67140">
+        </iframe>
+        <div class="map-pin-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Barr · 67140 · Alsace</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ════════════════════════════════════════ -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-layout">
+      <div class="contact-info reveal">
+        <div class="section-tag">05 / Contact</div>
+        <h2 class="section-title">Parlons de<br><em>votre projet</em></h2>
+        <p class="section-desc">Contactez-nous pour obtenir un devis gratuit ou pour toute question relative à nos services.</p>
+
+        <div class="contact-detail">
+          <a href="tel:+33686393144" class="contact-item">
+            <div class="contact-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.77 9.69a19.79 19.79 0 01-3.07-8.68A2 2 0 012.68 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.05 8.5a16 16 0 006.29 6.29l1.86-1.86a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Téléphone</div>
+              <div class="contact-item-value">06 86 39 31 44</div>
+            </div>
+          </a>
+          <a href="mailto:contact@ipn67.net" class="contact-item">
+            <div class="contact-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">E-mail</div>
+              <div class="contact-item-value">contact@ipn67.net</div>
+            </div>
+          </a>
+          <div class="contact-item">
+            <div class="contact-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Adresse</div>
+              <div class="contact-item-value">25B route du Hohwald<br>67140 Barr, Alsace</div>
+            </div>
+          </div>
+          <a href="https://wa.me/33686393144" target="_blank" rel="noopener" class="contact-item">
+            <div class="contact-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">WhatsApp</div>
+              <div class="contact-item-value">Envoyer un message</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap reveal">
+        <div class="form-title">Envoyer un <em>message</em></div>
+        <form id="contactForm">
+          <div class="form-grid">
+            <div class="form-field form-field-float">
+              <input class="form-input" type="text" id="fname" name="nom" required>
+              <label class="float-label" for="fname">Nom *</label>
+            </div>
+            <div class="form-field form-field-float">
+              <input class="form-input" type="email" id="femail" name="email" required>
+              <label class="float-label" for="femail">E-mail *</label>
+            </div>
+            <div class="form-field form-field-float full">
+              <input class="form-input" type="tel" id="fphone" name="telephone">
+              <label class="float-label" for="fphone">Téléphone</label>
+            </div>
+            <div class="form-field form-field-float full">
+              <textarea class="form-textarea" id="fmsg" name="message" required></textarea>
+              <label class="float-label" for="fmsg">Message *</label>
+            </div>
+            <div class="form-field full">
+              <label class="form-label">Pièce jointe</label>
+              <div class="form-file-wrap" onclick="document.getElementById('file-input').click()">
+                <label class="form-file-label">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M8 1v10M4 7l4-4 4 4M2 13h12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Joindre un fichier
+                </label>
+                <input type="file" id="file-input" name="fichier">
+                <div id="file-name"></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-submit">
+            <span class="form-note">* Champs obligatoires</span>
+            <button type="submit" class="btn-submit">
+              Envoyer
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </form>
+        <div class="form-success" id="formSuccess">
+          Message envoyé — <span>nous vous répondons rapidement.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Immo Pro <em>Nettoyage</em></div>
+    <div class="footer-copy">© 2024 Immo Pro Nettoyage · 25B route du Hohwald, 67140 Barr</div>
+    <ul class="footer-links">
+      <li><a href="mentions-legales.html">Mentions légales</a></li>
+      <li><a href="mailto:contact@ipn67.net">contact@ipn67.net</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  // ─── THEME TOGGLE ───────────────────────────────
+  const html = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('ipn-theme');
+  html.setAttribute('data-theme', saved || 'dark');
+  let cleaningActive = false;
+
+  function spawnDrops(overlay, bladeX, count) {
+    for (let i = 0; i < count; i++) {
+      const drop = document.createElement('div');
+      drop.className = 'squeegee-drop';
+      const size = 4 + Math.random() * 8;
+      const topPct = 10 + Math.random() * 80;
+      const delay = Math.random() * 200;
+      const dur = 1400 + Math.random() * 1000;
+      drop.style.cssText = `
+        left: ${bladeX - size / 2}px;
+        top: ${topPct}%;
+        width: ${size}px;
+        height: ${size * 1.3}px;
+        animation-duration: ${dur}ms;
+        animation-delay: ${delay}ms;
+      `;
+      overlay.appendChild(drop);
+      setTimeout(() => drop.remove(), dur + delay + 100);
+    }
+  }
+
+  function cleaningTransition(nextTheme) {
+    if (cleaningActive) return;
+    cleaningActive = true;
+
+    // Animate the toggle button
+    themeToggle.classList.add('cleaning');
+    themeToggle.addEventListener('animationend', () => themeToggle.classList.remove('cleaning'), { once: true });
+
+    // Direction : dark→light = gauche→droite / light→dark = droite→gauche
+    const goRight = nextTheme === 'light';
+
+    // Capture old background colour from CSS variables
+    const oldBg = getComputedStyle(html).getPropertyValue('--bg').trim() || '#0B1017';
+
+    // Build overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'squeegee-overlay';
+
+    const veil = document.createElement('div');
+    veil.className = 'squeegee-veil';
+    veil.style.background = oldBg;
+
+    const trail = document.createElement('div');
+    trail.className = 'squeegee-trail';
+
+    const blade = document.createElement('div');
+    blade.className = 'squeegee-blade';
+    // Pour droite→gauche, la lame mène depuis le bord gauche du voile
+    if (!goRight) { blade.style.right = 'auto'; blade.style.left = '-14px'; }
+
+    veil.appendChild(trail);
+    veil.appendChild(blade);
+    overlay.appendChild(veil);
+    document.body.appendChild(overlay);
+
+    // Apply new theme immediately (hidden under veil)
+    html.setAttribute('data-theme', nextTheme);
+    localStorage.setItem('ipn-theme', nextTheme);
+
+    const duration = 1600;
+    const start = performance.now();
+    let lastDropX = goRight ? -999 : 9999;
+
+    function frame(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // easeInOutCubic
+      const ease = progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+      const vw = window.innerWidth;
+      // bladeX = position horizontale du bord avant de la lame
+      const bladeX = goRight
+        ? Math.round(ease * (vw + 30) - 30)           // 0 → vw+30 (gauche→droite)
+        : Math.round((1 - ease) * (vw + 30) - 30);    // vw+30 → 0 (droite→gauche)
+
+      // Le voile suit la lame (côté plein = ancien thème)
+      veil.style.transform = goRight
+        ? `translateX(${bladeX}px)`                    // veil se décale vers la droite
+        : `translateX(${bladeX - vw - 30}px)`;         // veil se décale vers la gauche
+
+      // Spawn water drops as blade advances
+      const dropDelta = goRight ? bladeX - lastDropX : lastDropX - bladeX;
+      if (dropDelta > 40 && progress < 0.98) {
+        spawnDrops(overlay, bladeX, 2 + Math.floor(Math.random() * 3));
+        lastDropX = bladeX;
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        overlay.remove();
+        cleaningActive = false;
+      }
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const current = html.getAttribute('data-theme');
+    const next = current === 'light' ? 'dark' : 'light';
+    cleaningTransition(next);
+  });
+
+  // ─── NAVBAR SCROLL ──────────────────────────────
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ─── BURGER MENU ───────────────────────────────
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuClose = document.getElementById('menuClose');
+  burger.addEventListener('click', () => mobileMenu.classList.add('open'));
+  menuClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  function closeMobile() { mobileMenu.classList.remove('open'); }
+
+  // ─── SCROLL REVEAL ─────────────────────────────
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.delay || 0;
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  revealEls.forEach((el, i) => {
+    el.dataset.delay = (i % 3) * 80;
+    observer.observe(el);
+  });
+
+  // ─── FILE INPUT ─────────────────────────────────
+  document.getElementById('file-input').addEventListener('change', function() {
+    const name = this.files[0]?.name;
+    document.getElementById('file-name').textContent = name ? '📎 ' + name : '';
+  });
+
+  // ─── FORM SUBMIT ────────────────────────────────
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.btn-submit');
+    btn.textContent = '…';
+    btn.disabled = true;
+    setTimeout(() => {
+      this.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    }, 900);
+  });
+
+  // ─── ACTIVE NAV LINK ───────────────────────────
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+
+  // ─── SCROLL PROGRESS BAR ───────────────────────
+  const progressBar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (window.scrollY / total * 100) + '%';
+  }, { passive: true });
+
+  // ─── STAT COUNTER ANIMATION ────────────────────
+  function animateCounter(el, target, suffix, duration) {
+    const start = performance.now();
+    const update = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.innerHTML = Math.round(ease * target) + '<span>' + suffix + '</span>';
+      if (progress < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  }
+  const statObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const items = e.target.querySelectorAll('.stat-item');
+        const data = [
+          { val: 3,  suffix: '+' },
+          { val: 6,  suffix: '+' },
+          { val: 67, suffix: ''  }
+        ];
+        items.forEach((item, i) => {
+          const numEl = item.querySelector('.stat-num');
+          if (numEl && data[i]) {
+            setTimeout(() => animateCounter(numEl, data[i].val, data[i].suffix, 1200), i * 150);
+          }
+        });
+        statObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  const heroStats = document.querySelector('.hero-stats');
+  if (heroStats) statObserver.observe(heroStats);
+
+  // ─── PROCESS STEPS STAGGER OBSERVER ────────────
+  const processStepsEl = document.querySelector('.process-steps');
+  if (processStepsEl) {
+    const psObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          psObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    psObs.observe(processStepsEl);
+  }
+
+  // ─── BUTTON RIPPLE ─────────────────────────────
+  document.querySelectorAll('.btn-primary, .btn-ghost, .btn-submit').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const r = document.createElement('span');
+      r.className = 'ripple';
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      r.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
+      this.appendChild(r);
+      setTimeout(() => r.remove(), 600);
+    });
+  });
+
+  // ─── FLOATING LABEL STATE ──────────────────────
+  document.querySelectorAll('.form-field-float .form-input, .form-field-float .form-textarea').forEach(input => {
+    const updateState = () => {
+      input.closest('.form-field-float').classList.toggle('has-value', input.value.trim() !== '');
+    };
+    input.addEventListener('input', updateState);
+    input.addEventListener('blur', updateState);
+  });
+
+  // ─── HERO PARALLAX (orbs) ──────────────────────
+  const orb1 = document.querySelector('.hero-orb');
+  const orb2 = document.querySelector('.hero-orb-2');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (orb1) orb1.style.transform = `translateY(${y * 0.18}px)`;
+    if (orb2) orb2.style.transform = `translateY(${-y * 0.1}px)`;
+  }, { passive: true });
+</script>
+</body>
+</html>
